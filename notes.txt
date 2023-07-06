@@ -1,0 +1,36 @@
+2 Libraries needed
+
+Gradle
+
+implementation 'org.springframework.retry:spring-retry:1.3.1'
+implementation 'org.springframework:spring-aspects:5.3.5'
+
+
+Maven
+
+<dependency>
+   <groupId>org.springframework.retry</groupId>
+   <artifactId>spring-retry</artifactId>
+</dependency>
+
+<dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-aspects</artifactId>
+</dependency>
+
+
+You Must Enable Retry with the following annotation:
+
+   @EnableRetry
+
+
+Annotate the service for Retry
+
+   @Retryable(maxAttempts = 5, backoff = @Backoff(delay = 2000, multiplier = 2))
+
+
+Add optional Recovery annotation for failed retry attempts
+
+   @Recover
+
+
