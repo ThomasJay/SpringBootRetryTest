@@ -23,14 +23,13 @@ public class RetryMeRestController {
 
     private int attempts=1;
 
-
-    @GetMapping("retryMe")
+    @GetMapping("/retryMe")
     @Retryable(maxAttempts = 4, backoff = @Backoff(delay = 2000, multiplier = 2))
     public ResponseEntity<String> getRetryme() {
-
         log.info("retryMe service call attempted:::"+ attempts++);
 
         String response = restTemplate.getForObject("http://localhost:8081/api/v1/item", String.class);
+
         log.info("item service called");
         return new ResponseEntity<String>(response, HttpStatus.OK);
 
@@ -42,7 +41,6 @@ public class RetryMeRestController {
         return new ResponseEntity<String>("Item service is down", HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
-
 
 
 }

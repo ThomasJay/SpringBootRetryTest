@@ -34,3 +34,8 @@ Add optional Recovery annotation for failed retry attempts
    @Recover
 
 
+curl --location 'http://localhost:8081/api/v1/item'
+
+curl --location 'http://localhost:8080/api/v1/retryMe'
+
+
